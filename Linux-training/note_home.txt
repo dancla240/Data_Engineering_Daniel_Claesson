@@ -1,0 +1,2 @@
+hello from note_from
+current path is: /mnt/c/Users/danie/Documents/GitHUb/Data_Engineering_Daniel_Claesson/Linux-training
