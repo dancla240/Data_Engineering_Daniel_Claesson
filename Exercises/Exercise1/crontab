@@ -1,0 +1,1 @@
+*/1 * * * * python /Exercise1/src/cron.py >> /Exercise1/src/output.log 2>&1
