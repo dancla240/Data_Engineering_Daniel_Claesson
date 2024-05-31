@@ -1,0 +1,7 @@
+.
+./apa1
+./apa1/textfil.txt
+./min_katalog
+./min_katalog/.read_only.secrets
+./results.txt
+find: ‘*.txt’: No such file or directory

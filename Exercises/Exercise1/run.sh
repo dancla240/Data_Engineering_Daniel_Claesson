@@ -6,6 +6,8 @@ echo "List of installed packages:"
 pip list
 # start the cron service
 cron -f
+# start rsyslog service
+service rsyslog start
 
 # follow the logfile to keep the container running
-tail -f /Exercise1/src/output.log
+tail -f /Exercise1/src/output.log /var/log/cron.log

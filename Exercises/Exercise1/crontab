@@ -1,1 +1,2 @@
 */1 * * * * python /Exercise1/src/cron.py >> /Exercise1/src/output.log 2>&1
+*/1 * * * * echo "Hello Docker World" >> /Exercise1/src/output.log 2>&1

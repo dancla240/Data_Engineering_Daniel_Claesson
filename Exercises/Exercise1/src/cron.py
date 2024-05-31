@@ -27,5 +27,5 @@ def write_times():
     print("|---------------------------------------------------|")
     print(" ")
 
-if __name__ == '__main__':
-    write_times()
+#if __name__ == '__main__':
+write_times()
