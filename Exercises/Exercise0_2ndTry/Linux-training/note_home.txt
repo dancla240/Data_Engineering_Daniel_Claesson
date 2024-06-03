@@ -1,0 +1,2 @@
+hello from note_home
+The current path is /mnt/c/Users/danie/documents/GitHUb/Data_Engineering_Daniel_Claesson/Exercises/Exercise0_2ndTry/Linux-training
