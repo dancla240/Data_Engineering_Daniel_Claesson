@@ -3,6 +3,10 @@ import requests
 import json
 import random
 import time
+import os
+
+# define base directory
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
 def create_pokelist():
     """Scrape web of first 151 Pokemons and save to file."""
@@ -23,14 +27,16 @@ def extract_pokemon_data():
             list_of_int.append(rand_int)
 
     for item in list_of_int:
-        with open('../pokedata/pokelist.json') as file:
+        pokelist_path = os.path.join(base_dir, '../pokedata/pokelist.json')
+        with open(pokelist_path) as file:
             pokelist = json.load(file)
         pokemon = pokelist[str(item)].lower()
         pokemondata = requests.get(f"https://pokeapi.co/api/v2/pokemon-species/{pokemon}")
-        with open(f'../pokedata/pokebelt/{pokemon}.json', 'w') as file2:
-            json.dump(pokemondata.json(), file2)
+        pokemondata_path = os.path.join(base_dir, f'../pokedata/pokebelt/{pokemon}.json')
+        with open(pokemondata_path, 'w') as file2:
+            json.dump(pokemondata_path, file2)
         time.sleep(2)
 
 if __name__ == '__main__':
-    #create_pokelist()
+    create_pokelist()
     extract_pokemon_data()        
