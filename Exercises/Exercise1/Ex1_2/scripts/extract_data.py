@@ -32,9 +32,10 @@ def extract_pokemon_data():
             pokelist = json.load(file)
         pokemon = pokelist[str(item)].lower()
         pokemondata = requests.get(f"https://pokeapi.co/api/v2/pokemon-species/{pokemon}")
-        pokemondata_path = os.path.join(base_dir, f'../pokedata/pokebelt/{pokemon}.json')
-        with open(pokemondata_path, 'w') as file2:
-            json.dump(pokemondata_path, file2)
+        pokebelt_path = os.path.join(base_dir, f'../pokedata/pokebelt/{pokemon}.json')
+        with open(pokebelt_path, 'w') as file2:
+            #json.dump(pokebelt_path, file2)
+            json.dump(pokemondata.json(), file2)
         time.sleep(2)
 
 if __name__ == '__main__':

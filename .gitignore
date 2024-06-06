@@ -1,3 +1,8 @@
+# json filer som ändras hela tiden:
+*.json
+pokelist.json
+*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
