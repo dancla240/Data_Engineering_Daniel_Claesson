@@ -9,33 +9,41 @@ import os
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 def create_pokelist():
-    """Scrape web of first 151 Pokemons and save to file."""
+    """Scrape web of first 151 Pokemons and save to file pokelist.json."""
+    print("Running create_pokelist:")
     link = 'https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_Pok%C3%A9mon'
-    df = pd.DataFrame(pd.read_html(link)[1])
+    df = pd.read_html(link)[1]
     df = df.iloc[0:151,[2,0]]
+    df['Engelskt namn'] = df['Engelskt namn'].str.replace(" ", "_")
     df.rename(columns={'Nationellt Pokédex №' : 'Pokedex'}, inplace=True)
     df.set_index("Pokedex", inplace=True)
-    df["Engelskt namn"].to_json("./Exercises/Exercise1/Ex1_2/pokedata/pokelist.json", orient="index")
+    pokelist_path = os.path.join(base_dir, '../pokedata/pokelist.json')
+    print("Saving pokelist.json")
+    df["Engelskt namn"].to_json(pokelist_path, orient="index")
 
 def extract_pokemon_data():
-    """Extracts data for 6 random Pokemons and saves the data as .json."""
+    """Extracts data for 6 random Pokemons and saves the data as .json.
+    pokelist.json is used to find name of Pokemon."""
+    print("Running extract_pokemon_data:")
     list_of_int = []
 
     while len(list_of_int) <= 5:
         rand_int = random.randint(1, 151)
         if rand_int not in list_of_int:
             list_of_int.append(rand_int)
+        print(f"Random integers: {list_of_int}")
 
     for item in list_of_int:
         pokelist_path = os.path.join(base_dir, '../pokedata/pokelist.json')
         with open(pokelist_path) as file:
             pokelist = json.load(file)
         pokemon = pokelist[str(item)].lower()
+        print(f"Get data from web for {pokemon}.")
         pokemondata = requests.get(f"https://pokeapi.co/api/v2/pokemon-species/{pokemon}")
         pokebelt_path = os.path.join(base_dir, f'../pokedata/pokebelt/{pokemon}.json')
         with open(pokebelt_path, 'w') as file2:
-            #json.dump(pokebelt_path, file2)
             json.dump(pokemondata.json(), file2)
+        print(f"Saving data to disk for pokemon {pokemon}.")
         time.sleep(2)
 
 if __name__ == '__main__':

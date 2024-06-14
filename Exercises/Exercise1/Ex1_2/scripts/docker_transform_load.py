@@ -17,9 +17,8 @@ path_to_observations = os.path.join(base_dir, '../pokedata/observations')
 def create_pokemon_list():
     """Creates a list containing all file names in the pokebelt directory (.json files)."""
     pokemon_list = os.listdir(path_to_pokemons)
-    print(pokemon_list)
+    print(f"Pokemon_list: {pokemon_list}")
     return pokemon_list
-
 
 def transform_load(list_of_pokemon_jsons):
     pokemons_list_of_dicts = []
@@ -36,6 +35,8 @@ def transform_load(list_of_pokemon_jsons):
         writer = csv.DictWriter(file, fieldnames=field_names)
         writer.writeheader()
         writer.writerows(pokemons_list_of_dicts)
+    
+    print("Observation data written.")
 
 if __name__ == '__main__':
     pokemons_2 = create_pokemon_list()

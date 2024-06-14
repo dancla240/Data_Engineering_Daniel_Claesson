@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -rf ../pokedata/pokebelt/*
+rm pokedata/pokebelt/*
